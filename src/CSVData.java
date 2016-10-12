@@ -30,4 +30,96 @@ public class CSVData {
 		
 	}
 	
+	/***
+	 * Re
+	 * @param filename
+	 * @return
+	 */
+	
+	public static double[][] convertTo2DArray(String filename){
+		
+		return null;
+		
+	}
+	
+	public static void saveToFile(String filename){
+		
+		
+	}
+	
+	public static double[] getRow(int rowIndex){
+		
+		return null;
+		
+	}
+	
+	public static double[] getCol(int colIndex){
+		
+		return null;
+		
+	}
+	
+	public static double[] getCol(String colName){
+		
+		return null;
+		
+	}
+	
+	public static double[][] getRows(int[] indices){
+		
+		return null;
+		
+	}
+	
+	public static double[][] getRows(int startIndex, int endIndex){
+		
+		return null;
+		
+	}
+	
+	public static double[][] getCols(int[] indices){
+		
+		return null;
+		
+	}
+	
+	public static double[][] getCols(int startIndex, int endIndex){
+		
+		return null;
+		
+	}
+	
+	public static double[][] getCols(String[] colNames){
+		
+		return null;
+		
+	}
+	
+	public static void setEntry(int rowIndex, int colIndex, double newValue){	
+		
+		
+	}
+	
+	public static void setRow(int rowindex, double[] newValues){	
+		
+		
+	}
+	
+	public static void setCol(int colIndex, double[] newValues){	
+		
+		
+	}
+	
+	public static void setCol(String colName, double[] newValues){	
+		
+		
+	}
+	
+	public static String[] getColumnNames(){
+		
+		return null;
+		
+	}
+	
+	
 }
