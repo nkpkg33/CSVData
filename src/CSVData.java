@@ -58,9 +58,13 @@ public class CSVData {
 	 * @return the row of index rowIndex
 	 */
 	
-	public static double[] getRow(int rowIndex){
+	public double[] getRow(int rowIndex){
 		
-		return null;
+		double[] row = new double[data[0].length];
+		
+		for (int i = 0; i < data[0].length; i++) row[i] = data[rowIndex][i];
+		
+		return row;
 		
 	}
 	
@@ -70,9 +74,13 @@ public class CSVData {
 	 * @return the column of index colIndex
 	 */
 	
-	public static double[] getCol(int colIndex){
+	public double[] getCol(int colIndex){
 		
-		return null;
+		double[] col = new double[data.length];
+		
+		for (int i = 0; i < data.length; i++) col[i] = data[i][colIndex];
+		
+		return col;
 		
 	}
 	
@@ -82,9 +90,17 @@ public class CSVData {
 	 * @return the column of name colName
 	 */
 	
-	public static double[] getCol(String colName){
+	public double[] getCol(String colName){
 		
-		return null;
+		int index = 0;
+		
+		for (int i = 0; i < columnNames.length; i++){
+			
+			if (data[i].equals(colName)) index = i;
+			
+		}
+		
+		return getCol(index);
 		
 	}
 	
@@ -94,9 +110,17 @@ public class CSVData {
 	 * @return the array containing rows of input indices
 	 */
 	
-	public static double[][] getRows(int[] indices){
+	public double[][] getRows(int[] indices){
 		
-		return null;
+		double[][] rows = new double[indices.length][data[0].length];
+		
+		for (int row = 0; row < indices.length; row++){
+			
+			for (int col = 0; col < data[0].length; col++) rows[indices[row]][col] = data[indices[row]][col];
+			
+		}
+		
+		return rows;
 		
 	}
 
@@ -107,9 +131,17 @@ public class CSVData {
 	 * @return the array of the range startIndex, endIndex
 	 */
 	
-	public static double[][] getRows(int startIndex, int endIndex){
+	public double[][] getRows(int startIndex, int endIndex){
 		
-		return null;
+		double[][] rows = new double[endIndex - startIndex + 1][data[0].length];
+		
+		for (int row = startIndex; row < endIndex; row++){
+			
+			for (int col = 0; col < data[0].length; col++) rows[row][col] = data[row][col];
+			
+		}
+		
+		return rows;
 		
 	}
 	
@@ -119,9 +151,17 @@ public class CSVData {
 	 * @return the array containing the columns of input indices
 	 */
 	
-	public static double[][] getCols(int[] indices){
+	public double[][] getCols(int[] indices){
 		
-		return null;
+		double[][] cols = new double[data.length][indices.length];
+		
+		for (int row = 0; row < data.length; row++){
+			
+			for (int col = 0; col < indices.length; col++) cols[row][indices[col]] = data[row][indices[col]];
+			
+		}
+		
+		return cols;
 		
 	}
 	
@@ -132,9 +172,17 @@ public class CSVData {
 	 * @returnthe array of the range startIndex, endIndex
 	 */
 	
-	public static double[][] getCols(int startIndex, int endIndex){
+	public double[][] getCols(int startIndex, int endIndex){
 		
-		return null;
+		double[][] cols = new double[data.length][endIndex - startIndex + 1];
+		
+		for (int col = startIndex; col < endIndex; col++){
+			
+			for (int row = 0; row < data.length; row++) cols[row][col] = data[row][col];
+			
+		}
+		
+		return cols;
 		
 	}
 	
@@ -144,9 +192,21 @@ public class CSVData {
 	 * @return the array containing the columns of input names
 	 */
 	
-	public static double[][] getCols(String[] colNames){
+	public double[][] getCols(String[] colNames){
 		
-		return null;
+		int[] indices = new int[colNames.length];
+		
+		for (int i = 0; i < colNames.length; i++){
+			
+			for (int j = 0; j < columnNames.length; j++){
+				
+				if (data[i].equals(colNames[i])) indices[i] = j;
+				
+			}
+			
+		}
+			
+		return getCols(indices);
 		
 	}
 	
@@ -157,7 +217,9 @@ public class CSVData {
 	 * @param newValue the value to update the entry
 	 */
 	
-	public static void setEntry(int rowIndex, int colIndex, double newValue){	
+	public void setEntry(int rowIndex, int colIndex, double newValue){	
+		
+		data[rowIndex][colIndex] = newValue;
 		
 		
 	}
@@ -168,8 +230,13 @@ public class CSVData {
 	 * @param newValues the values to update the row
 	 */
 	
-	public static void setRow(int rowindex, double[] newValues){	
+	public void setRow(int rowindex, double[] newValues){	
 		
+		for (int i = 0; i < data[rowindex].length; i++){
+			
+			data[rowindex][i] = newValues[i];
+			
+		}
 		
 	}
 	
@@ -179,7 +246,13 @@ public class CSVData {
 	 * @param newValues the values to update the column
 	 */
 	
-	public static void setCol(int colIndex, double[] newValues){	
+	public void setCol(int colIndex, double[] newValues){	
+		
+		for (int i = 0; i < data.length; i++){
+			
+			data[i][colIndex] = newValues[i];
+			
+		}
 		
 		
 	}
@@ -190,8 +263,17 @@ public class CSVData {
 	 * @param newValues the values to update the column
 	 */
 	
-	public static void setCol(String colName, double[] newValues){	
+	public void setCol(String colName, double[] newValues){	
 		
+		int index = 0;
+		
+		for (int j = 0; j < columnNames.length; j++){
+			
+			if (data[j].equals(colName)) index = j;
+			
+		}
+		
+		setCol(index, newValues);
 		
 	}
 	
@@ -200,9 +282,9 @@ public class CSVData {
 	 * @return the column names
 	 */
 	
-	public static String[] getColumnNames(){
+	public String[] getColumnNames(){
 		
-		return null;
+		return columnNames;
 		
 	}
 	
