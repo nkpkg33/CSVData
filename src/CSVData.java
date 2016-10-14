@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /***
@@ -59,7 +60,7 @@ public class CSVData {
 	
 	public static CSVData readCSVFile(String filename, int numLinesToIgnore, String[] columnNames){
 		
-		return null;
+		return new CSVData(filename, columnNames, numLinesToIgnore);
 		
 	}
 	
@@ -74,20 +75,61 @@ public class CSVData {
 	
 	public static CSVData readCSVFile(String filename, int numLinesToIgnore){
 		
-		return null;
+		String temp = "";
+		
+		int a = 0;
+		
+		do{
+			
+			temp += filename.substring(a, a + 1);
+			
+			a++;
+			
+			
+		}while (!filename.substring(a, a + 1).equals("\n"));
+		
+		ArrayList<String> tempCols = getWords(temp);
+		
+		String[] columns = new String[tempCols.size()];
+		
+		for (int i = 0; i < tempCols.size(); i++) columns[i] = tempCols.get(i);
+		
+		return new CSVData(filename, columns, numLinesToIgnore + 1);
 		
 	}
 	
-	/***
-	 * Returns a double array converted from the csv file
-	 * @param filename the file to convert
-	 * @return the converted double array
-	 */
-	
-	public static double[][] convertTo2DArray(String filename){
-		
-		return null;
-		
+	private static ArrayList<String> getWords(String plainText) {
+
+		boolean isLetter = false;
+
+		String word = "";
+
+		ArrayList<String> words = new ArrayList<>();
+
+		for (int i = 0; i < plainText.length(); i++) {
+
+			if (!plainText.substring(i, i + 1).equals(" "))
+				isLetter = true;
+
+			else
+				isLetter = false;
+
+			if (isLetter)
+				word += plainText.substring(i, i + 1);
+
+			if (!isLetter || i == plainText.length() - 1) {
+
+				if (!word.equals(""))
+					words.add(word);
+
+				word = "";
+
+			}
+
+		}
+
+		return words;
+
 	}
 	
 	/***
@@ -95,8 +137,23 @@ public class CSVData {
 	 * @param filename the file with the new changes
 	 */
 	
-	public static void saveToFile(String filename){
+	public StringBuilder saveToFile(){
 		
+		StringBuilder file = new StringBuilder();
+		
+		for (int row = 0; row < data.length; row++){
+			
+			for (int col = 0; col < data[0].length; col++){
+				
+				file.append(data[row][col]);
+				
+			}
+			
+			file.append(System.getProperty("line.separator"));
+			
+		}
+		
+		return file;
 		
 	}
 	
