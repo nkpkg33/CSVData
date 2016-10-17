@@ -217,6 +217,30 @@ public class CSVData {
 	}
 
 	/***
+	 * Displays numRows starting from startIndex
+	 * 
+	 * @param startIndex
+	 *            the starting index
+	 * @param numRows
+	 *            the number of rows to display
+	 */
+
+	public void displayRows(int startIndex, int numRows) {
+
+		double[][] rows = new double[startIndex + numRows][data[0].length];
+
+		for (int row = startIndex; row < numRows; row++) {
+
+			for (int col = 0; col < data[0].length; col++)
+				System.out.print(data[row][col] + " ");
+
+			System.out.println();
+
+		}
+
+	}
+
+	/***
 	 * Returns a double[][] array which contains multiple columns of data
 	 * 
 	 * @param indices
