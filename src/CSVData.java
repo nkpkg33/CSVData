@@ -227,8 +227,6 @@ public class CSVData {
 
 	public void displayRows(int startIndex, int numRows) {
 
-		double[][] rows = new double[startIndex + numRows][data[0].length];
-
 		for (int row = startIndex; row < numRows; row++) {
 
 			for (int col = 0; col < data[0].length; col++)
